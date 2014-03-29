@@ -45,7 +45,7 @@ LinkedList.prototype.RPUSH = function(val) {
 
 LinkedList.prototype.LPOP = function(val) {
   if(!this.head) {
-    return null;
+    return undefined;
   }
   var temp = this.head;
   if(this.head === this.tail) {
@@ -59,7 +59,7 @@ LinkedList.prototype.LPOP = function(val) {
 
 LinkedList.prototype.RPOP = function(val) {
   if(!this.tail) {
-    return null;
+    return undefined;
   }
   var temp = this.tail;
 
