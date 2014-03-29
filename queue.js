@@ -1,6 +1,6 @@
 var LinkedList = require('./linkedList');
 
-// Queue implementation in prototypal using LinkedList
+// Queue implementation in prototypal instantiation using LinkedList
 var makeQueue = function() {
   var instance = Object.create(queueMethods);
   instance.storage = new LinkedList();
