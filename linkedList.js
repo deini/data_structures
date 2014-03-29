@@ -1,3 +1,5 @@
+// Linked List implementation in Pseudoclasical Instantiation
+
 var Node = function(val) {
   this.value = val;
   this.next = null;
@@ -115,25 +117,5 @@ LinkedList.prototype.reverse = function() {
   this.head = temp;
 };
 
-///////////////////////////////////////
-var list = new LinkedList();
-list.LPUSH(1);
-list.LPUSH(3);
-list.LPUSH(2);
-list.LPUSH(1);
-list.LPUSH(1);
-list.RPUSH(4);
-list.RPUSH(1);
-list.RPUSH(1);
-list.print();
-// console.log(".........");
-// console.log(list.LPOP());
-// console.log(list.RPOP());
-console.log(".........");
-// list.print();
-// console.log(list.contains(3));
-// console.log(list.head.value, list.tail.value);
-// list.reverse();
-// console.log(list.head.value, list.tail.value);
-list.removeDuplicates();
-list.print();
+// Export LinkedList
+module.exports = LinkedList;
