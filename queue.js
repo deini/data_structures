@@ -24,3 +24,5 @@ var queueMethods = {
     return this._size;
   }
 };
+
+module.exports = makeQueue;
