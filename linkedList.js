@@ -11,110 +11,111 @@ var LinkedList = function() {
   this.tail = null;
 };
 
-//LPUSH, LPOP, RPUSH, RPOP, contains, remove duplicates, reverse in place, insert @ index
-LinkedList.prototype.print = function() {
-  var current = this.head;
-  while(current) {
-    console.log(current.value);
-    current = current.next;
-  }
-};
-
-LinkedList.prototype.LPUSH = function(val) {
-  if(!this.head) {
-    this.head = new Node(val);
-    this.tail = this.head;
-    return;
-  }
-  var temp = this.head;
-  this.head = new Node(val);
-  temp.prev = this.head;
-  this.head.next = temp;
-};
-
-LinkedList.prototype.RPUSH = function(val) {
-  if(!this.tail) {
-    this.head = new Node(val);
-    this.tail = this.head;
-    return;
-  } 
-  this.tail.next = new Node(val);
-  this.tail.next.prev = this.tail;
-  this.tail = this.tail.next;
-};
-
-LinkedList.prototype.LPOP = function(val) {
-  if(!this.head) {
-    return undefined;
-  }
-  var temp = this.head;
-  if(this.head === this.tail) {
-    this.head = null;
-    this.tail = null;
-  } else {
-    this.head = this.head.next;
-  }
-  return temp.value;
-};
-
-LinkedList.prototype.RPOP = function(val) {
-  if(!this.tail) {
-    return undefined;
-  }
-  var temp = this.tail;
-
-  if(this.head === this.tail) {
-    this.head = null;
-    this.tail = null;
-  } else {
-    this.tail = this.tail.prev;
-    this.tail.next = null;
-  }
-  return temp.value;
-};
-
-LinkedList.prototype.contains = function(val) {
-  var current = this.head;
-
-  while(current) {
-    if(current.value === val) {
-      return true;
+LinkedList.prototype = {
+  print: function() {
+    var current = this.head;
+    while(current) {
+      console.log(current.value);
+      current = current.next;
     }
-    current = current.next;
-  }
-  return false;
-};
+  },
 
-LinkedList.prototype.removeDuplicates = function() {
-  var values = {};
+  LPUSH: function(val) {
+    if(!this.head) {
+      this.head = new Node(val);
+      this.tail = this.head;
+      return;
+    }
+    var temp = this.head;
+    this.head = new Node(val);
+    temp.prev = this.head;
+    this.head.next = temp;
+  },
 
-  var current = this.head;
+  RPUSH: function(val) {
+    if(!this.tail) {
+      this.head = new Node(val);
+      this.tail = this.head;
+      return;
+    } 
+    this.tail.next = new Node(val);
+    this.tail.next.prev = this.tail;
+    this.tail = this.tail.next;
+  },
 
-  while(current) {
-    if(!values[current.value]) {
-      values[current.value] = true;
+  LPOP: function(val) {
+    if(!this.head) {
+      return undefined;
+    }
+    var temp = this.head;
+    if(this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
     } else {
-      current.prev.next = current.next;
-      if(current.next) {
-        current.next.prev = current.prev;
-      }
+      this.head = this.head.next;
     }
-    current = current.next;
-  }
-};
+    return temp.value;
+  },
 
-LinkedList.prototype.reverse = function() {
-  var current = this.head;
+  RPOP: function(val) {
+    if(!this.tail) {
+      return undefined;
+    }
+    var temp = this.tail;
 
-  while(current) {
-    var next = current.next;
-    current.next = current.prev;
-    current.prev = next;
-    current = next;
+    if(this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    }
+    return temp.value;
+  },
+
+  contains: function(val) {
+    var current = this.head;
+
+    while(current) {
+      if(current.value === val) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  },
+
+  removeDuplicates: function() {
+    var values = {};
+
+    var current = this.head;
+
+    while(current) {
+      if(!values[current.value]) {
+        values[current.value] = true;
+      } else {
+        current.prev.next = current.next;
+        if(current.next) {
+          current.next.prev = current.prev;
+        }
+      }
+      current = current.next;
+    }
+  },
+
+  reverse: function() {
+    var current = this.head;
+
+    while(current) {
+      var next = current.next;
+      current.next = current.prev;
+      current.prev = next;
+      current = next;
+    }
+    var temp = this.tail;
+    this.tail = this.head;
+    this.head = temp;
   }
-  var temp = this.tail;
-  this.tail = this.head;
-  this.head = temp;
 };
 
 // Export LinkedList
